@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OAuth Callback</title>
+<style>
+  body { font-family: monospace; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #222; }
+  h1 { font-family: Arial, sans-serif; }
+  .box { background: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; padding: 16px; margin: 12px 0; word-break: break-all; }
+  .label { font-weight: bold; color: #555; display: block; margin-bottom: 4px; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+  <h1>OAuth2 Callback</h1>
+  <p>Parameters received from the redirect:</p>
+  <div id="output"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const output = document.getElementById('output');
+
+    if ([...params].length === 0) {
+      output.innerHTML = '<p>No query parameters found in the URL.</p>';
+    } else {
+      for (const [key, value] of params.entries()) {
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.innerHTML = '<span class="label">' + key + '</span>' + value;
+        output.appendChild(box);
+      }
+    }
+  </script>
+</body>
+</html>
